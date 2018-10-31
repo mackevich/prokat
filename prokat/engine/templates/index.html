@@ -5,10 +5,52 @@
     <title>Prokat</title>
     <link rel='stylesheet' type='text/css' href='/static/css/bootstrap.css'>
 </head>
+<body>
+<div class="container-fluid" >
+
+<div class="row">
+
+    <div class="col-2"><a href="/engine/"><img src="/static/img/logo.png"
+                                                alt="pososedski"></a></div>
+    <div class="col-6">
+        <h2>POSOSEDSKI.BY</h2>
+        <p><h4><a href="/engine/"><img src="/static/img/pict-3.png" ></a> Аренда инструмента</h4></p>
+
+    </div>
+    <div class="col-4 align-self-center"><h3>
+        <p><a href="/engine/"><img src="/static/img/velcom.png" alt="velcom"></a>+375(29) 666-66-66</p>
+        <p><a href="/engine/"><img src="/static/img/mts.jpg" alt="mts"></a>+375(29) 777-77-77</p></h3>
+
+    </div>
+    <div class="col-2"></div>
+    <div class="col-7">
+    <div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Какой инструмент ищём">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="submit">Искать</button>
+  </div>
+</div>
+    </div>
+</div>
+</div>
+<br>
+<div class="container-fluid">
+<div class="row justify-content-end">
+        <div class="col-3">
+            <div class="list-group">
+                <a class="list-group-item list-group-item-action active"><h5>Категории:</h5></a>
+                      {% for category in category %}
+                        <a href="#" class="list-group-item list-group-item-action"><h6>{{ category.name }}</h6></a>
+                     {% endfor %}
+             </div>
+        </div>
+</div>
+
 
             {% block content %}
             {% endblock content %}
-
+</div>
+</body>
     <footer class="footer">
         <p>&copy; 2018 Роскомнадзор не рекомедует.</p>
     </footer>

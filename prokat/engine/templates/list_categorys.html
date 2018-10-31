@@ -1,16 +1,16 @@
 {% extends 'index.html' %}
 {% block content %}
-<body>
-<img src="/static/img/no_image.jpeg" alt="Niger">
+
+
 {% for category in category %}
         <h4>{{ category.name }}</h4>
         <div>
             {{ category.description }}
 
         </div>
-            <img src="/static/img/no_image.jpeg" alt="Niger">
+            <img src="/static/img/no_image.jpeg" alt="No image">
         </div>
 
 {% endfor %}
-</body>
+
 {% endblock content %}
