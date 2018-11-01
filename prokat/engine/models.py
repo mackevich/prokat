@@ -12,6 +12,9 @@ class Category(MPTTModel):
     created = models.DateTimeField(auto_now=True)
     ranking = models.DecimalField(max_digits=100, decimal_places=0, default=0,)
 
+    def __str__(self):
+        return self.name
+
 
 class Good(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE,)
@@ -21,6 +24,10 @@ class Good(models.Model):
     price = models.FloatField(default=0.0)
     created = models.DateTimeField(auto_now=True)
     ranking = models.DecimalField(max_digits=100, decimal_places=0, default=0)
+
+    def __str__(self):
+        return self.name
+
 
 
 class Order(models.Model):

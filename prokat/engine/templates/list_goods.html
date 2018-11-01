@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% block content %}
+
+
+{% for i in good %}
+        <h4>{{ i.name }}</h4>
+        <div>
+            {{ i.description }}
+
+        </div>
+
+
+{% endfor %}
+
+{% endblock content %}

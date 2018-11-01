@@ -25,6 +25,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 #    path('', mainpage),
     path('^static/(?P<path>.*)$', serve, kwargs={'document_root':settings.STATIC_ROOT}),
-    path('^media/media/(?P<path>.*)$', serve, kwargs={'document_root':settings.MEDIA_ROOT}),
+    path('^media/(?P<path>.*)$', serve, kwargs={'document_root':settings.MEDIA_ROOT}),
     path('engine/', include('engine.urls'))
 ]
