@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Prokat</title>
     <link rel='stylesheet' type='text/css' href='/static/css/bootstrap.css'>
+    <link rel='stylesheet' type='text/css' href='/static/css/prokat.css'>
 </head>
 <body>
 <div class="container-fluid" >
@@ -17,7 +18,7 @@
         <p><h4><a href="/engine/"><img src="/static/img/pict-3.png" ></a> Аренда инструмента</h4></p>
 
     </div>
-    <div class="col-4 align-self-center"><h3>
+    <div class="col-4 align-self-center" ><h3>
         <p><a href="/engine/"><img src="/static/img/velcom.png" alt="velcom"></a>+375(29) 666-66-66</p>
         <p><a href="/engine/"><img src="/static/img/mts.jpg" alt="mts"></a>+375(29) 777-77-77</p></h3>
 
@@ -37,8 +38,8 @@
 <div class="container-fluid">
 <div class="row justify-content-end">
         <div class="col-3">
-            <div class="list-group">
-                <a class="list-group-item list-group-item-action active"><h5>Категории:</h5></a>
+            <div class="list-group" >
+                <a class="list-group-item pcategory "><h5>Категории:</h5></a>
                       {% for category in category %}
                         <a href="#" class="list-group-item list-group-item-action"><h6>{{ category.name }}</h6></a>
                      {% endfor %}
