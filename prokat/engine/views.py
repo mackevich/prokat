@@ -3,14 +3,24 @@ from django.views.generic import ListView, CreateView
 from .models import Category, Good, Order
 from django.db.models import Q
 
-def main_list(request):
-    return render(request,'engine/index.html')
+class IndexView(ListView):
+    context_object_name = 'main_all'
+    template_name = 'list_goods.html'
+    queryset = Good.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['category'] = Category.objects.all()
+        context['good'] = Good.objects.all()
+        # And so on for more models
+        return context
 
 
 class ListCategoryView(ListView):
     model = Category
     template_name = 'list_categorys.html'
     context_object_name = 'category'
+
 
 
 
