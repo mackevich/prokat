@@ -1,15 +1,52 @@
 {% extends 'index.html' %}
 {% block content %}
 
-
-{% for i in good %}
-        <h4>{{ i.name }}</h4>
-        <div>
-            {{ i.description }}
-
+<div class="container">
+    <div class="row">
+        <div class="col-2">
         </div>
+        <div class="col-8">
+            <form action='' method='GET' >
+                <div class="input-group mb-3">
+                     <input type="text" name="iq" class="form-control" placeholder="Какой инструмент ищём" value="{{ request.GET.iq }}" >
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Искать</button>
+                        </div>
+                </div>
+            </form>
+         </div>
+    </div>
+</div>
 
 
-{% endfor %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+                    <div class="list-group" >
+                    <a class="list-group-item pcategory "><h5>Категории:</h5></a>
+                      {% for category in category %}
+                        <a href="#" class="list-group-item list-group-item-action"><h6>{{ category.name }}</h6></a>
+                     {% endfor %}
+                    </div>
+                </div>
+
+
+
+                {% for i in good %}
+                <div class="col-3">
+                    <div class="card" style="width: 16rem">
+                        <img class="card-img-top" src="/static/img/no_image.jpeg" width="100" height="160" alt="Card image cap">
+                        <div class="card-body">
+                            <h6 class="card-title">{{ i.name }}</h6>
+                            <p class="card-text" align="center" >Стоимость: {{ i.price }} руб.</p>
+                            <div align="center">
+                                <a href="create/" class="btn btn-primary">Заказать</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
 
 {% endblock content %}

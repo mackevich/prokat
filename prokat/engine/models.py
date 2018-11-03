@@ -34,4 +34,8 @@ class Order(models.Model):
     customer = models.CharField(max_length=50)
     phone = models.CharField(max_length=18)
     order = models.ForeignKey(Good, on_delete=models.CASCADE,)
+    created = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
 

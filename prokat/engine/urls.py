@@ -1,9 +1,9 @@
 from django.urls import path
-from .views import ListGoodView, ListCategoryView, IndexView
+from .views import  IndexView, CreateOrderView
 
 app_name = 'engine'
 
 urlpatterns = [
-   # path('', main_list),
     path(r'', IndexView.as_view(), name='index'),
+    path(r'create/', CreateOrderView.as_view(), name='order-create'),
 ]

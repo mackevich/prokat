@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Good
+from .models import Category, Good, Order
 
 
 # Register your models here.
@@ -19,3 +19,10 @@ class GoodAdmin(admin.ModelAdmin):
 
     class Meta:
         model = Good
+
+@admin.register(Order)
+class GoodAdmin(admin.ModelAdmin):
+    list_display = ('order','customer','phone','created')
+
+    class Meta:
+        model = Order
