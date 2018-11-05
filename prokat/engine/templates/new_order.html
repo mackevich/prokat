@@ -1,14 +1,57 @@
 {% extends 'index.html' %}
 {% block content %}
 
+ <div class="container">
+            <div class="row">
+                <div class="col-2">
+                </div>
+                <div class="col-7">
+                    <form class="order-form" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group" align="center">
+                             <h5>Заказ оборудования</h5>
+                                <input type="text" class="form-control" id="order" name="order" placeholder="Оборудование">
+                        </div>
+                         <div class="form-group">
+                              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ваше имя">
+                         </div>
+                         <div class="form-group">
+                              <input type="text" class="form-control" id="phone" placeholder="Ваш номер телефона">
+                         </div>
+                            <div align="center">
+                              <button type="submit" class="btn btn-primary">Заказать</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+ </div>
 
-<form action="{{ action }}" method="POST">
-    {% csrf_token %}
-    <ul>
-        {{ form.as_ul }}
-    </ul>
-    <input id="save_post" type="submit" value="Save"/>
-</form>
+<br>
+<div class="container">
+            <div class="row">
+                <div class="col-5">
+                </div>
+                <div class="col-7">
+                    <a href='https://api.telegram.org/bot266438341:AAG7xBR40pc-dzZth6TLct-x0S5fhn_MGNQ/sendMessage?chat_id=239840902&text=Новый заказ'>Телега </a>
+                    <a href="{% url 'engine:index' %}">Вернутся</a>
+                </div>
+            </div>
+</div>
 
-<a href="{% url 'engine:index' %}">back to list</a>
+<div class="container">
+            <div class="row">
+                <div class="col-4">
+                </div>
+                <div class="col-8">
+                    <form action="{{ action }}" method="POST">
+                    {% csrf_token %}
+                        <li>
+                            {{ form.as_ul }}
+                        </li>
+                             <input id="save_order" type="submit" value="Заказать"/>
+                    </form>
+                </div>
+
+
+
 {% endblock content %}

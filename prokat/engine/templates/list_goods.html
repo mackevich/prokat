@@ -30,22 +30,55 @@
                     </div>
                 </div>
 
-
-
-                {% for i in good %}
+<!--create/{{ i.name }}-->
                 <div class="col-3">
+                    {% for i in good1 %}
                     <div class="card" style="width: 16rem">
                         <img class="card-img-top" src="/static/img/no_image.jpeg" width="100" height="160" alt="Card image cap">
                         <div class="card-body">
                             <h6 class="card-title">{{ i.name }}</h6>
                             <p class="card-text" align="center" >Стоимость: {{ i.price }} руб.</p>
                             <div align="center">
-                                <a href="create/" class="btn btn-primary">Заказать</a>
+                                <a href="{% url 'engine:order_new' %}" class="btn btn-primary">Заказать</a>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <br>
                 {% endfor %}
+                </div>
+                <div class="col-3">
+                    {% for i in good2 %}
+                    <div class="card" style="width: 16rem">
+                        <img class="card-img-top" src="/static/img/no_image.jpeg" width="100" height="160" alt="Card image cap">
+                        <div class="card-body">
+                            <h6 class="card-title">{{ i.name }}</h6>
+                            <p class="card-text" align="center" >Стоимость: {{ i.price }} руб.</p>
+                            <div align="center">
+                                <a href="{% url 'engine:order_new' %}" class="btn btn-primary">Заказать</a>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                {% endfor %}
+                </div>
+                <div class="col-3">
+                    {% for i in good3 %}
+                    <div class="card" style="width: 16rem">
+                        <img class="card-img-top" src="/static/img/no_image.jpeg" width="100" height="160" alt="Card image cap">
+                        <div class="card-body">
+                            <h6 class="card-title">{{ i.name }}</h6>
+                            <p class="card-text" align="center" >Стоимость: {{ i.price }} руб.</p>
+                            <div align="center">
+                                <a href="{% url 'engine:order_new' %}" class="btn btn-primary">Заказать</a>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                {% endfor %}
+                </div>
+
+
+
             </div>
         </div>
 
