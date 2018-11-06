@@ -4,58 +4,73 @@ from django.urls import reverse
 from .models import Category, Good, Order
 from .forms import OrderForm
 from django.db.models import Q
+import request
 from django.shortcuts import redirect
 from django import forms
 
 class IndexView(ListView):
-    model = Good
+    # model = Good
     #context_object_name = 'good'
     template_name = 'list_goods.html'
-    # queryset = Good.objects.all()
+    queryset = Good.objects.all()
 
     def get_context_data(self, **kwargs):
+        n = 3
         context = super(IndexView, self).get_context_data(**kwargs)
-        context['category'] = Category.objects.all()
-        context['good1'] = Good.objects.all()[:3]
-        context['good2'] = Good.objects.all()[3:6]
-        context['good3'] = Good.objects.all()[6:9]
-        return context
-
-    def get_queryset(self):
         queryset = super().get_queryset()
+
+        context['request'] = self.request
+        context['category'] = Category.objects.all()
         query = self.request.GET.get('iq')
         if query:
-            queryset = queryset.filter(
-                Q(name__icontains=query)
-            ).distinct()
-            self.paginate_by = None
-        return queryset
+            context['good1'] = queryset.filter(Q(name__icontains=query))[:n]
+            context['good2'] = queryset.filter(Q(name__icontains=query))[n:n*2]
+            context['good3'] = queryset.filter(Q(name__icontains=query))[n*2:n*3]
+        else:
+            context['good1'] = queryset.all()[:n]
+            context['good2'] = queryset.all()[n:n*2]
+            context['good3'] = queryset.all()[n*2:n*3]
+        return context
+
+    # def get_queryset(self):
+    #     queryset = super().get_queryset()
+    #     print(queryset)
+    #     query = self.request.GET.get('iq')
+    #     if query:
+    #         queryset = queryset.filter(
+    #             Q(name__icontains=query)
+    #         ).distinct()
+    #         self.paginate_by = None
+    #         print(queryset)
+    #     return queryset
 
 
-def order_new(request):
-    if request.method == "POST":
-        form = OrderForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('engine:index')
-    else:
-        form = OrderForm()
-        return render(request, 'new_order.html', {'form': form})
+class CategoryView(ListView):
+    template_name = 'list_categorys.html'
+    context_object_name = 'goods'
+    queryset = Good.objects.filter(id=1)
 
 
 
 
+class CreateOrderView(CreateView):
+    model = Order
+    fields = ('order','customer', 'phone')
+    template_name = 'new_order.html'
 
 
-# class CreateOrderView(CreateView):
-#     model = Order
-#     fields = ('order','customer', 'phone')
-#     template_name = 'new_order.html'
-#
-#     def get_success_url(self):
-#         return reverse('engine:index')
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['action'] = reverse('engine:order-create')
-#         return context
+
+    def get_success_url(self):
+        # print(Order.pk)
+        return reverse('engine:index')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['action'] = reverse('engine:order_new')
+        return context
+
+    # def form_valid(self, form):
+    #     instance = form.save(commit=False)
+    #     print('dfdfdfdfdfdf')
+    #     # request.GET('https://api.telegram.org/bot266438341:AAG7xBR40pc-dzZth6TLct-x0S5fhn_MGNQ/sendMessage?chat_id=239840902&text=Новый заказ')
+    #     instance.save()

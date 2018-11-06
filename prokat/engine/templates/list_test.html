@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+            <form action='' method='GET' >
+                <div class="input-group mb-3">
+                     <input type="text" name="iq" class="form-control" placeholder="Какой инструмент ищём" value="{{ request.GET.iq }}" >
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Искать</button>
+                        </div>
+                </div>
+            </form>
+         </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3">
+                {% for category in category %}
+                        <a href="#" class="list-group-item list-group-item-action"><h6>{{ category.name }}</h6></a>
+                     {% endfor %}
+            </div>
+            <div class="col-md-9">
+                {% for good in good1 %}
+                    <div class="col-md-4">
+                        {{  good }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

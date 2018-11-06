@@ -2,14 +2,11 @@
 {% block content %}
 
 
-{% for category in category %}
-        <h4>{{ category.name }}</h4>
-        <div>
-            {{ category.description }}
+{% for i in goods %}
+        <h4>{{ i.name }}</h4>
 
-        </div>
-            <img src="/static/img/no_image.jpeg" alt="No image">
-        </div>
+
+
 
 {% endfor %}
 

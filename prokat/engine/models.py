@@ -28,6 +28,9 @@ class Good(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ['-ranking']
+
 
 
 class Order(models.Model):
@@ -38,4 +41,6 @@ class Order(models.Model):
 
     def __str__(self):
         return self.phone
+
+
 
