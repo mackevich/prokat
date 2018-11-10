@@ -24,6 +24,10 @@ class IndexView(ListView):
         query = self.request.GET.get('iq')
         if query:
             tempquery = Good.objects.all().filter(Q(name__icontains=query) | Q(category__name__icontains=query))
+            if len(tempquery) <= 6 and len(tempquery) >= 4:
+                n = 2
+            elif len(tempquery) <= 3:
+                n = 1
             context['good1'] = tempquery[:n]
             context['good2'] = tempquery[n:n*2]
             context['good3'] = tempquery[n*2:n*3]

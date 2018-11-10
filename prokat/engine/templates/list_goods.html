@@ -25,12 +25,14 @@
                     <div class="list-group" >
                     <a class="list-group-item pcategory "><h5>Категории:</h5></a>
                       {% for category in category %}
-                        <a href="#" class="list-group-item list-group-item-action"><h6>{{ category.name }}</h6></a>
-                     {% endfor %}
+                        <a href="?iq={{ category.name }}" class="list-group-item list-group-item-action"><h6>{{ category.name }}</h6></a>
+                        {% endfor %}
                     </div>
                 </div>
 
 <!--create/{{ i.name }}-->
+
+
                 <div class="col-3">
                     {% for i in good1 %}
                     <div class="card" style="width: 16rem">

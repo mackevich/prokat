@@ -15,6 +15,8 @@ class Category(MPTTModel):
     def __str__(self):
         return self.name
 
+    class Meta: # Допилить не работает
+        ordering = ['ranking']
 
 class Good(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE,)
