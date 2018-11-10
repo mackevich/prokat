@@ -31,7 +31,12 @@
                 </div>
 
 <!--create/{{ i.name }}-->
-
+    {% if not good1 %}
+                <div class="col-2"></div>
+                <div class="col-3">
+                <img src="/static/img/netu.jpg" width="400" height="400" alt="Товар не найден">
+                </div>
+       {% else %}
 
                 <div class="col-3">
                     {% for i in good1 %}
@@ -79,7 +84,7 @@
                 {% endfor %}
                 </div>
 
-
+    {% endif %}
 
             </div>
         </div>
