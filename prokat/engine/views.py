@@ -23,26 +23,15 @@ class IndexView(ListView):
         context['category'] = Category.objects.all()
         query = self.request.GET.get('iq')
         if query:
-            context['good1'] = queryset.filter(Q(name__icontains=query))[:n]
-            context['good2'] = queryset.filter(Q(name__icontains=query))[n:n*2]
-            context['good3'] = queryset.filter(Q(name__icontains=query))[n*2:n*3]
+            tempquery = Good.objects.all().filter(Q(name__icontains=query) | Q(category__name__icontains=query))
+            context['good1'] = tempquery[:n]
+            context['good2'] = tempquery[n:n*2]
+            context['good3'] = tempquery[n*2:n*3]
         else:
             context['good1'] = queryset.all()[:n]
             context['good2'] = queryset.all()[n:n*2]
             context['good3'] = queryset.all()[n*2:n*3]
         return context
-
-    # def get_queryset(self):
-    #     queryset = super().get_queryset()
-    #     print(queryset)
-    #     query = self.request.GET.get('iq')
-    #     if query:
-    #         queryset = queryset.filter(
-    #             Q(name__icontains=query)
-    #         ).distinct()
-    #         self.paginate_by = None
-    #         print(queryset)
-    #     return queryset
 
 
 class CategoryView(ListView):
