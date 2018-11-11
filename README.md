@@ -67,4 +67,4 @@ request==1.0.211
 Andrei Mackevich 
 
 ###  <a name="license"></a> Лицензия:
-MIT License
+This project is licensed under the MIT License
