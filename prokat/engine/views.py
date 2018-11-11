@@ -8,9 +8,10 @@ import request
 from django.shortcuts import redirect
 from django import forms
 
+
 class IndexView(ListView):
     # model = Good
-    #context_object_name = 'good'
+    # context_object_name = 'good'
     template_name = 'list_goods.html'
     queryset = Good.objects.all()
 
@@ -24,17 +25,18 @@ class IndexView(ListView):
         query = self.request.GET.get('iq')
         if query:
             tempquery = Good.objects.all().filter(Q(name__icontains=query) | Q(category__name__icontains=query))
-            if len(tempquery) <= 6 and len(tempquery) >= 4:
+            if len(tempquery) == 4:  # Блок извращений для корректного отображения товаров в сетке бутстрапа
+                context['goodcheck'] = 'Oh no 4'  # Создание переменной которая укажет в шаблоне list_goods что у нас 4 товара
                 n = 2
-            elif len(tempquery) <= 3:
-                n = 1
+            else:  # Формируем 3 корректных столбца, для отображения в сетке бутстрапа
+                n = round((len(tempquery) / 3) + 0.2)
             context['good1'] = tempquery[:n]
-            context['good2'] = tempquery[n:n*2]
-            context['good3'] = tempquery[n*2:n*3]
+            context['good2'] = tempquery[n:n * 2]
+            context['good3'] = tempquery[n * 2:n * 3]
         else:
             context['good1'] = queryset.all()[:n]
-            context['good2'] = queryset.all()[n:n*2]
-            context['good3'] = queryset.all()[n*2:n*3]
+            context['good2'] = queryset.all()[n:n * 2]
+            context['good3'] = queryset.all()[n * 2:n * 3]
         return context
 
 
@@ -44,14 +46,10 @@ class CategoryView(ListView):
     queryset = Good.objects.filter(id=1)
 
 
-
-
 class CreateOrderView(CreateView):
     model = Order
-    fields = ('order','customer', 'phone')
+    fields = ('order', 'customer', 'phone')
     template_name = 'new_order.html'
-
-
 
     def get_success_url(self):
         # print(Order.pk)
