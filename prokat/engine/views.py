@@ -1,17 +1,11 @@
-from django.shortcuts import render
 from django.views.generic import ListView, CreateView
 from django.urls import reverse
 from .models import Category, Good, Order
-from .forms import OrderForm
 from django.db.models import Q
-import request
-from django.shortcuts import redirect
-from django import forms
+
 
 
 class IndexView(ListView):
-    # model = Good
-    # context_object_name = 'good'
     template_name = 'list_goods.html'
     queryset = Good.objects.all()
 
@@ -29,7 +23,7 @@ class IndexView(ListView):
                 context['goodcheck'] = 'Oh no 4'  # Создание переменной которая укажет в шаблоне list_goods что у нас 4 товара
                 n = 2
             else:  # Формируем 3 корректных столбца, для отображения в сетке бутстрапа
-                n = round((len(tempquery) / 3) + 0.2)
+                n = round((len(tempquery) / 3) + 0.2)  # Чтоб не импортировать math ради одной строки
             context['good1'] = tempquery[:n]
             context['good2'] = tempquery[n:n * 2]
             context['good3'] = tempquery[n * 2:n * 3]
